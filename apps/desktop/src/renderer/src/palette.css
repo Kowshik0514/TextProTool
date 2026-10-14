@@ -1,0 +1,83 @@
+.palette {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.palette-search input {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 16px 18px;
+  font-size: 16px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.palette-search input:focus {
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+.palette-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  overflow: auto;
+  flex: 1;
+}
+
+.palette-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.palette-list li.active {
+  background: var(--accent-soft);
+}
+
+.palette-list li .main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.palette-list li .name {
+  font-weight: 560;
+}
+
+.palette-list li .desc {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.palette-list li .meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.palette-list .empty {
+  padding: 24px;
+  text-align: center;
+}
+
+.palette-footer {
+  display: flex;
+  gap: 14px;
+  padding: 8px 14px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "textpro",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal productivity & text automation platform",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @textpro/desktop",
+    "start": "node scripts/launch.mjs",
+    "shortcut": "powershell -ExecutionPolicy Bypass -File scripts/create-desktop-shortcut.ps1",
+    "startup": "powershell -ExecutionPolicy Bypass -File scripts/set-windows-startup.ps1",
+    "startup:off": "powershell -ExecutionPolicy Bypass -File scripts/set-windows-startup.ps1 -Remove",
+    "build": "npm run build -w @textpro/core && npm run build -w @textpro/platform-win && npm run build -w @textpro/desktop",
+    "dist": "npm run build && npm run dist -w @textpro/desktop",
+    "build:core": "npm run build -w @textpro/core",
+    "typecheck": "npm run typecheck -w @textpro/core && npm run typecheck -w @textpro/platform-win && npm run typecheck -w @textpro/desktop",
+    "test:core": "npm run build -w @textpro/core && node packages/core/dist/smoke.test.js",
+    "check:win32": "node scripts/check-win32.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

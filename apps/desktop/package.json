@@ -1,0 +1,79 @@
+{
+  "name": "@textpro/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TextPro desktop application",
+  "main": "out/main/index.js",
+  "author": "TextPro",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "start": "electron .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "dist": "npm run build && electron-builder --win",
+    "dist:dir": "npm run build && electron-builder --win --dir"
+  },
+  "dependencies": {
+    "@textpro/core": "*",
+    "@textpro/platform-win": "*",
+    "koffi": "^2.10.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sql.js": "^1.12.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@types/sql.js": "^1.4.9",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^34.0.2",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
+    "typescript": "^5.7.3",
+    "vite": "^5.4.14"
+  },
+  "build": {
+    "appId": "com.textpro.app",
+    "productName": "TextPro",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../../node_modules/sql.js/dist/sql-wasm.wasm",
+        "to": "sqljs/sql-wasm.wasm"
+      }
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "**/node_modules/koffi/**/*",
+      "**/node_modules/sql.js/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        },
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "artifactName": "TextPro-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "TextPro"
+    }
+  }
+}
