@@ -1,7 +1,8 @@
 node_modules/
 dist/
 out/
-release/
+**/release/**
+!**/release/**/*.exe
 *.log
 .DS_Store
 Thumbs.db
